@@ -457,7 +457,8 @@ box-shadow:0 0 0 0 rgba(37,211,102,0);
       <input type="text" id="adminNome" placeholder="Nome do produto">
       <input type="text" id="adminCategoria" placeholder="Categoria (ex: Chuteira, Camisa, Bola)">
       <input type="text" id="adminPreco" placeholder="Preço (ex: 299)">
-      <input type="text" id="adminImagem" placeholder="Link da imagem">
+      <input type="file" id="adminImagemArquivo" accept="image/*">
+<img id="previewImagem" style="max-width:150px; margin-top:10px; display:none; border-radius:10px;">
       <input type="text" id="adminTamanhos" placeholder="Tamanhos separados por vírgula (ex: P,M,G ou 38,39,40)">
       <input type="text" id="adminEstoques" placeholder="Estoque separado por vírgula (ex: 5,3,2)">
     </div>
@@ -578,6 +579,7 @@ let produtos = [];
 let carrinho = [];
 let categoriaAtual = "Todos";
 let adminLogado = false;
+let imagemBase64Admin = "";
 
 function salvarProdutos(){
   localStorage.setItem("dinho_produtos", JSON.stringify(produtos));
@@ -637,7 +639,7 @@ function adicionarProdutoAdmin(){
   const nome = document.getElementById("adminNome").value.trim();
   const categoria = document.getElementById("adminCategoria").value.trim();
   const preco = Number(document.getElementById("adminPreco").value.trim());
-  const imagem = document.getElementById("adminImagem").value.trim();
+  const imagem = imagemBase64Admin;
   const tamanhosTexto = document.getElementById("adminTamanhos").value.trim();
   const estoquesTexto = document.getElementById("adminEstoques").value.trim();
 
@@ -680,7 +682,10 @@ function limparFormularioAdmin(){
   document.getElementById("adminNome").value = "";
   document.getElementById("adminCategoria").value = "";
   document.getElementById("adminPreco").value = "";
-  document.getElementById("adminImagem").value = "";
+  document.getElementById("adminImagemArquivo").value = "";
+document.getElementById("previewImagem").src = "";
+document.getElementById("previewImagem").style.display = "none";
+imagemBase64Admin = "";
   document.getElementById("adminTamanhos").value = "";
   document.getElementById("adminEstoques").value = "";
 }
@@ -958,6 +963,27 @@ document.addEventListener("keydown", function(e){
       alert("Senha incorreta");
     }
   }
+});
+document.getElementById("adminImagemArquivo").addEventListener("change", function(e){
+  const arquivo = e.target.files[0];
+  const preview = document.getElementById("previewImagem");
+
+  if(!arquivo){
+    imagemBase64Admin = "";
+    preview.style.display = "none";
+    preview.src = "";
+    return;
+  }
+
+  const reader = new FileReader();
+
+  reader.onload = function(event){
+    imagemBase64Admin = event.target.result;
+    preview.src = imagemBase64Admin;
+    preview.style.display = "block";
+  };
+
+  reader.readAsDataURL(arquivo);
 });
 </script>
 
