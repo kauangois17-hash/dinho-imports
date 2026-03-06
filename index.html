@@ -1,0 +1,926 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dinho Imports</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:"Poppins",sans-serif;
+}
+
+body{
+  background:#0f0f0f;
+  color:white;
+}
+
+/* HEADER */
+header{
+  background:#000;
+  padding:15px 20px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  border-bottom:3px solid red;
+  flex-wrap:wrap;
+  gap:15px;
+}
+
+.logo{
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+
+.logo img{
+  height:50px;
+  width:auto;
+  display:block;
+}
+
+.logo span{
+  font-size:22px;
+  font-weight:600;
+  color:yellow;
+}
+
+nav{
+  display:flex;
+  gap:20px;
+  flex-wrap:wrap;
+}
+
+nav a{
+  color:white;
+  text-decoration:none;
+  font-weight:500;
+}
+
+nav a:hover{
+  color:yellow;
+}
+
+.search{
+  padding:10px;
+  border-radius:6px;
+  border:none;
+  min-width:220px;
+}
+
+.cart{
+  font-size:20px;
+  cursor:pointer;
+}
+
+/* BANNER */
+.hero{
+  width:100%;
+  background:black;
+}
+
+.hero img{
+  width:100%;
+  height:auto;
+  display:block;
+}
+
+/* CATEGORIAS */
+.categorias{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+  padding:20px 40px 10px;
+  justify-content:center;
+}
+
+.categorias button{
+  background:#222;
+  color:white;
+  border:1px solid #444;
+  padding:10px 16px;
+  border-radius:20px;
+  cursor:pointer;
+}
+
+.categorias button:hover{
+  background:red;
+}
+
+/* ORDENAR */
+.ordenar{
+  padding:0 40px 20px;
+  text-align:center;
+}
+
+.ordenar select{
+  padding:10px;
+  border-radius:6px;
+  background:#111;
+  color:white;
+  border:1px solid #333;
+}
+
+/* TITULO */
+.titulo{
+  font-size:28px;
+  padding:20px 40px 0;
+  text-align:center;
+}
+
+/* PRODUTOS */
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+  gap:25px;
+  padding:30px 40px;
+}
+
+.card{
+  background:#1b1b1b;
+  border-radius:12px;
+  padding:15px;
+  text-align:center;
+  transition:0.3s;
+}
+
+.card:hover{
+  transform:scale(1.03);
+}
+
+.card img{
+  width:100%;
+  height:180px;
+  object-fit:cover;
+  border-radius:10px;
+}
+
+.preco{
+  color:yellow;
+  margin:10px 0;
+  font-size:18px;
+}
+
+.categoria-label{
+  color:#bbb;
+  font-size:14px;
+  margin-top:5px;
+}
+
+button{
+  background:red;
+  border:none;
+  padding:10px 15px;
+  color:white;
+  border-radius:6px;
+  cursor:pointer;
+  font-weight:500;
+}
+
+button:hover{
+  background:yellow;
+  color:black;
+}
+
+select, input[type="number"]{
+  padding:10px;
+  border-radius:6px;
+  border:1px solid #333;
+  background:#0f0f0f;
+  color:white;
+}
+
+/* CARRINHO */
+.bloco{
+  background:#fff;
+  color:#000;
+  margin:40px;
+  padding:30px;
+  border-radius:10px;
+}
+
+.bloco h2{
+  margin-bottom:20px;
+}
+
+.bloco h3{
+  margin-top:10px;
+}
+
+input[type="text"], input[type="password"], .bloco select, .admin-box textarea, .admin-box input{
+  padding:10px;
+  margin:5px 0;
+  border-radius:5px;
+  border:1px solid #ccc;
+  width:100%;
+  background:white;
+  color:black;
+}
+
+#listaCarrinho{
+  padding-left:0;
+  list-style:none;
+}
+
+.item-carrinho{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:10px;
+  margin:10px 0;
+  padding:10px;
+  border-bottom:1px solid #ddd;
+  flex-wrap:wrap;
+}
+
+.item-info{
+  flex:1;
+}
+
+/* CONTATO */
+.contato{
+  text-align:center;
+  padding:40px;
+  background:#111;
+}
+
+.contato h2{
+  margin-bottom:20px;
+  color:yellow;
+}
+
+.contato p{
+  margin:10px 0;
+  font-size:18px;
+}
+
+/* ADMIN */
+.admin-toggle{
+  text-align:center;
+  margin:10px 20px 0;
+}
+
+.admin-box{
+  background:#ffffff;
+  color:#000;
+  margin:20px 40px 40px;
+  padding:25px;
+  border-radius:12px;
+  display:none;
+}
+
+.admin-box h2, .admin-box h3{
+  margin-bottom:15px;
+}
+
+.admin-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+}
+
+.admin-lista{
+  margin-top:20px;
+}
+
+.admin-item{
+  background:#f5f5f5;
+  color:#000;
+  padding:12px;
+  border-radius:10px;
+  margin-bottom:10px;
+  display:flex;
+  justify-content:space-between;
+  gap:10px;
+  align-items:center;
+  flex-wrap:wrap;
+}
+
+.admin-item strong{
+  display:block;
+}
+
+.small{
+  font-size:13px;
+  color:#444;
+}
+
+/* FOOTER */
+footer{
+  background:black;
+  padding:30px;
+  text-align:center;
+  color:#aaa;
+  margin-top:40px;
+}
+
+/* RESPONSIVO */
+@media (max-width:768px){
+  header{
+    flex-direction:column;
+    text-align:center;
+  }
+
+  nav{
+    justify-content:center;
+  }
+
+  .search{
+    width:100%;
+    min-width:unset;
+  }
+
+  .logo img{
+    height:40px;
+  }
+
+  .logo span{
+    font-size:18px;
+  }
+
+  .grid{
+    grid-template-columns:1fr;
+    padding:20px;
+  }
+
+  .titulo{
+    padding:20px 20px 0;
+  }
+
+  .categorias{
+    padding:20px;
+  }
+
+  .ordenar{
+    padding:0 20px 20px;
+  }
+
+  .bloco{
+    margin:20px;
+    padding:20px;
+  }
+
+  .admin-box{
+    margin:20px;
+    padding:20px;
+  }
+
+  .admin-grid{
+    grid-template-columns:1fr;
+  }
+
+  .contato{
+    padding:30px 20px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="logo">
+    <img src="https://i.postimg.cc/Hs0Fv06r/d2b807c7-d038-4ba7-9518-5e2e90107914.png" alt="Dinho Imports">
+    <span>DINHO IMPORTS</span>
+  </div>
+
+  <nav>
+    <a href="#">Inicio</a>
+    <a href="#produtos">Produtos</a>
+    <a href="#carrinho">Carrinho</a>
+    <a href="#contato">Contato</a>
+  </nav>
+
+  <input class="search" placeholder="Buscar produto">
+
+  <div class="cart">
+    🛒 <span id="cartCount">0</span>
+  </div>
+</header>
+
+<section class="hero">
+  <img src="https://i.postimg.cc/pLqrvHc7/banner-jpg.jpg" alt="Banner Dinho Imports">
+</section>
+
+
+<section class="admin-box" id="adminBox">
+  <h2>Painel Admin</h2>
+
+  <div id="loginAdmin">
+    <input type="password" id="senhaAdmin" placeholder="Digite a senha do admin">
+    <button onclick="fazerLoginAdmin()">Entrar</button>
+  </div>
+
+  <div id="conteudoAdmin" style="display:none;">
+    <h3>Adicionar novo produto</h3>
+
+    <div class="admin-grid">
+      <input type="text" id="adminNome" placeholder="Nome do produto">
+      <input type="text" id="adminCategoria" placeholder="Categoria (ex: Chuteira, Camisa, Bola)">
+      <input type="text" id="adminPreco" placeholder="Preço (ex: 299)">
+      <input type="text" id="adminImagem" placeholder="Link da imagem">
+      <input type="text" id="adminTamanhos" placeholder="Tamanhos separados por vírgula (ex: P,M,G ou 38,39,40)">
+      <input type="text" id="adminEstoques" placeholder="Estoque separado por vírgula (ex: 5,3,2)">
+    </div>
+
+    <button style="margin-top:10px;" onclick="adicionarProdutoAdmin()">Adicionar Produto</button>
+
+    <div class="admin-lista">
+      <h3>Produtos cadastrados</h3>
+      <div id="listaAdminProdutos"></div>
+    </div>
+  </div>
+</section>
+
+<section class="categorias">
+  <button onclick="filtrarCategoria('Todos')">Todos</button>
+  <button onclick="filtrarCategoria('Chuteira')">Chuteira</button>
+  <button onclick="filtrarCategoria('Camisa')">Camisa</button>
+  <button onclick="filtrarCategoria('Bola')">Bola</button>
+  <button onclick="filtrarCategoria('Luva')">Luva</button>
+</section>
+
+<section class="ordenar">
+  <select id="ordenar" onchange="aplicarFiltros()">
+    <option value="relevancia">Mais relevante</option>
+    <option value="az">A-Z</option>
+    <option value="maior">Maior preço</option>
+    <option value="menor">Menor preço</option>
+  </select>
+</section>
+
+<h2 class="titulo" id="produtos">Produtos</h2>
+
+<section>
+  <div id="listaProdutos" class="grid"></div>
+</section>
+
+<section class="bloco" id="carrinho">
+  <h2>🛒 Carrinho / Finalizar Pedido</h2>
+
+  <ul id="listaCarrinho"></ul>
+
+  <h3>Total: R$ <span id="totalPreco">0</span></h3>
+
+  <hr style="margin:20px 0">
+
+  <h3>Dados para entrega</h3>
+
+  <input id="nomeCliente" type="text" placeholder="Seu nome">
+  <input id="telefoneCliente" type="text" placeholder="Telefone">
+  <input id="enderecoCliente" type="text" placeholder="Endereço de entrega">
+
+  <select id="pagamento">
+    <option>PIX</option>
+    <option>Cartão</option>
+    <option>Boleto</option>
+  </select>
+
+  <button onclick="finalizarPedido()">Finalizar Pedido</button>
+</section>
+
+<section class="contato" id="contato">
+  <h2>Contato</h2>
+  <p>📞 Telefone: (98) 98496-9464</p>
+  <p>📷 Instagram: @dinho.imports01</p>
+</section>
+
+<footer>
+  <p>© 2026 Dinho Imports - Todos direitos reservados</p>
+</footer>
+
+<script>
+const SENHA_ADMIN = "1234";
+
+const produtosPadrao = [
+  {
+    nome:"Chuteira Nike",
+    categoria:"Chuteira",
+    preco:299,
+    relevancia:10,
+    imagem:"https://images.unsplash.com/photo-1600180758890-6b94519a8ba6",
+    tamanhos:["37","38","39","40","41","42"],
+    estoque:{ "37":3, "38":5, "39":4, "40":6, "41":2, "42":1 }
+  },
+  {
+    nome:"Bola Profissional",
+    categoria:"Bola",
+    preco:149,
+    relevancia:8,
+    imagem:"https://images.unsplash.com/photo-1517649763962-0c623066013b",
+    tamanhos:["Único"],
+    estoque:{ "Único":10 }
+  },
+  {
+    nome:"Camisa Futebol",
+    categoria:"Camisa",
+    preco:129,
+    relevancia:9,
+    imagem:"https://images.unsplash.com/photo-1517466787929-bc90951d0974",
+    tamanhos:["P","M","G","GG"],
+    estoque:{ "P":5, "M":7, "G":4, "GG":2 }
+  },
+  {
+    nome:"Luva de Goleiro",
+    categoria:"Luva",
+    preco:99,
+    relevancia:7,
+    imagem:"https://images.unsplash.com/photo-1574629810360-7efbbe195018",
+    tamanhos:["7","8","9","10"],
+    estoque:{ "7":2, "8":3, "9":3, "10":1 }
+  }
+];
+
+let produtos = [];
+let carrinho = [];
+let categoriaAtual = "Todos";
+let adminLogado = false;
+
+function salvarProdutos(){
+  localStorage.setItem("dinho_produtos", JSON.stringify(produtos));
+}
+
+function carregarProdutos(){
+  const salvos = localStorage.getItem("dinho_produtos");
+
+  if(salvos){
+    produtos = JSON.parse(salvos);
+  }else{
+    produtos = produtosPadrao;
+    salvarProdutos();
+  }
+}
+
+function abrirAdmin(){
+  const box = document.getElementById("adminBox");
+  box.style.display = box.style.display === "block" ? "none" : "block";
+}
+
+function fazerLoginAdmin(){
+  const senha = document.getElementById("senhaAdmin").value;
+
+  if(senha === SENHA_ADMIN){
+    adminLogado = true;
+    document.getElementById("loginAdmin").style.display = "none";
+    document.getElementById("conteudoAdmin").style.display = "block";
+    renderAdminProdutos();
+  }else{
+    alert("Senha incorreta");
+  }
+}
+
+function renderAdminProdutos(){
+  const area = document.getElementById("listaAdminProdutos");
+  area.innerHTML = "";
+
+  produtos.forEach((p, i) => {
+    area.innerHTML += `
+      <div class="admin-item">
+        <div>
+          <strong>${p.nome}</strong>
+          <div class="small">Categoria: ${p.categoria}</div>
+          <div class="small">Preço: R$ ${p.preco}</div>
+          <div class="small">Tamanhos: ${p.tamanhos.join(", ")}</div>
+        </div>
+        <div>
+          <button onclick="removerProdutoAdmin(${i})">Remover</button>
+        </div>
+      </div>
+    `;
+  });
+}
+
+function adicionarProdutoAdmin(){
+  const nome = document.getElementById("adminNome").value.trim();
+  const categoria = document.getElementById("adminCategoria").value.trim();
+  const preco = Number(document.getElementById("adminPreco").value.trim());
+  const imagem = document.getElementById("adminImagem").value.trim();
+  const tamanhosTexto = document.getElementById("adminTamanhos").value.trim();
+  const estoquesTexto = document.getElementById("adminEstoques").value.trim();
+
+  if(!nome || !categoria || !preco || !imagem || !tamanhosTexto || !estoquesTexto){
+    alert("Preencha todos os campos do produto.");
+    return;
+  }
+
+  const tamanhos = tamanhosTexto.split(",").map(t => t.trim()).filter(Boolean);
+  const quantidades = estoquesTexto.split(",").map(q => q.trim()).filter(Boolean);
+
+  if(tamanhos.length !== quantidades.length){
+    alert("A quantidade de tamanhos precisa ser igual à quantidade de estoques.");
+    return;
+  }
+
+  const estoque = {};
+  tamanhos.forEach((tam, index) => {
+    estoque[tam] = Number(quantidades[index]) || 0;
+  });
+
+  produtos.push({
+    nome,
+    categoria,
+    preco,
+    relevancia: 6,
+    imagem,
+    tamanhos,
+    estoque
+  });
+
+  salvarProdutos();
+  renderAdminProdutos();
+  aplicarFiltros();
+  limparFormularioAdmin();
+  alert("Produto adicionado com sucesso!");
+}
+
+function limparFormularioAdmin(){
+  document.getElementById("adminNome").value = "";
+  document.getElementById("adminCategoria").value = "";
+  document.getElementById("adminPreco").value = "";
+  document.getElementById("adminImagem").value = "";
+  document.getElementById("adminTamanhos").value = "";
+  document.getElementById("adminEstoques").value = "";
+}
+
+function removerProdutoAdmin(i){
+  if(!confirm("Deseja remover este produto?")) return;
+
+  const nomeProduto = produtos[i].nome;
+
+  carrinho = carrinho.filter(item => item.nome !== nomeProduto);
+  produtos.splice(i, 1);
+
+  salvarProdutos();
+  renderAdminProdutos();
+  aplicarFiltros();
+  atualizarCarrinho();
+}
+
+function renderProdutos(lista = produtos){
+  let area = document.getElementById("listaProdutos");
+  area.innerHTML = "";
+
+  if(lista.length === 0){
+    area.innerHTML = `<p style="text-align:center; grid-column:1/-1;">Nenhum produto encontrado.</p>`;
+    return;
+  }
+
+  lista.forEach((p) => {
+    const indexOriginal = produtos.findIndex(prod => prod.nome === p.nome && prod.imagem === p.imagem);
+    const options = p.tamanhos.map(t => `<option value="${t}">${t}</option>`).join("");
+
+    area.innerHTML += `
+      <div class="card">
+        <img src="${p.imagem}" alt="${p.nome}">
+        <h3>${p.nome}</h3>
+        <p class="categoria-label">${p.categoria}</p>
+        <p class="preco">R$ ${p.preco}</p>
+
+        <div style="display:flex; gap:8px; margin-top:10px;">
+          <select id="tamanho_${indexOriginal}" style="flex:1;">
+            ${options}
+          </select>
+
+          <input id="qtd_${indexOriginal}" type="number" min="1" value="1" style="width:90px;">
+        </div>
+
+        <button style="margin-top:12px;" onclick="comprar(${indexOriginal})">Adicionar ao carrinho</button>
+        <p id="estoque_${indexOriginal}" style="margin-top:10px; color:#aaa; font-size:14px;"></p>
+      </div>
+    `;
+  });
+
+  lista.forEach((p) => {
+    const indexOriginal = produtos.findIndex(prod => prod.nome === p.nome && prod.imagem === p.imagem);
+    atualizarTextoEstoque(indexOriginal);
+  });
+}
+
+function atualizarTextoEstoque(i){
+  const p = produtos[i];
+  const select = document.getElementById(`tamanho_${i}`);
+  const qtdInput = document.getElementById(`qtd_${i}`);
+  const el = document.getElementById(`estoque_${i}`);
+
+  if(!p || !select || !qtdInput || !el) return;
+
+  const tamanho = select.value;
+  const disponivel = p.estoque[tamanho] ?? 0;
+
+  el.innerHTML = `Estoque (${tamanho}): <b style="color:yellow;">${disponivel}</b>`;
+
+  qtdInput.max = disponivel > 0 ? disponivel : 1;
+
+  if(parseInt(qtdInput.value || "1") > disponivel && disponivel > 0){
+    qtdInput.value = disponivel;
+  }
+
+  if(disponivel === 0){
+    qtdInput.value = 1;
+  }
+}
+
+document.addEventListener("change", (e) => {
+  if(e.target && e.target.id && e.target.id.startsWith("tamanho_")){
+    const i = parseInt(e.target.id.split("_")[1]);
+    atualizarTextoEstoque(i);
+  }
+});
+
+function comprar(i){
+  const p = produtos[i];
+  if(!p) return;
+
+  const tamanho = document.getElementById(`tamanho_${i}`).value;
+  const qtd = parseInt(document.getElementById(`qtd_${i}`).value || "1");
+  const disponivel = p.estoque[tamanho] ?? 0;
+
+  if(disponivel <= 0){
+    alert("Esse tamanho está sem estoque!");
+    return;
+  }
+
+  if(qtd < 1){
+    alert("Quantidade inválida.");
+    return;
+  }
+
+  if(qtd > disponivel){
+    alert(`Só tem ${disponivel} unidade(s) disponível(is) nesse tamanho.`);
+    return;
+  }
+
+  p.estoque[tamanho] = disponivel - qtd;
+  salvarProdutos();
+
+  const idx = carrinho.findIndex(item => item.nome === p.nome && item.tamanho === tamanho);
+
+  if(idx >= 0){
+    carrinho[idx].qtd += qtd;
+  }else{
+    carrinho.push({
+      nome:p.nome,
+      preco:p.preco,
+      tamanho:tamanho,
+      qtd:qtd
+    });
+  }
+
+  atualizarCarrinho();
+  atualizarTextoEstoque(i);
+
+  if(adminLogado){
+    renderAdminProdutos();
+  }
+}
+
+function atualizarCarrinho(){
+  let lista = document.getElementById("listaCarrinho");
+  let total = 0;
+  lista.innerHTML = "";
+
+  carrinho.forEach((p, i) => {
+    const subtotal = p.preco * p.qtd;
+    total += subtotal;
+
+    lista.innerHTML += `
+      <li class="item-carrinho">
+        <span class="item-info">
+          <b>${p.nome}</b> (Tam: ${p.tamanho}) — ${p.qtd}x — R$ ${p.preco}
+          <span style="color:#b8860b;">(R$ ${subtotal})</span>
+        </span>
+        <button onclick="removerCarrinho(${i})">❌</button>
+      </li>
+    `;
+  });
+
+  document.getElementById("totalPreco").innerText = total;
+  document.getElementById("cartCount").innerText = carrinho.reduce((acc, item) => acc + item.qtd, 0);
+}
+
+function removerCarrinho(i){
+  const item = carrinho[i];
+  const prod = produtos.find(p => p.nome === item.nome);
+
+  if(prod){
+    prod.estoque[item.tamanho] = (prod.estoque[item.tamanho] ?? 0) + item.qtd;
+  }
+
+  carrinho.splice(i, 1);
+  salvarProdutos();
+  atualizarCarrinho();
+
+  produtos.forEach((p, idx) => {
+    atualizarTextoEstoque(idx);
+  });
+
+  if(adminLogado){
+    renderAdminProdutos();
+  }
+}
+
+function filtrarCategoria(cat){
+  categoriaAtual = cat;
+  aplicarFiltros();
+}
+
+function aplicarFiltros(){
+  let lista = [...produtos];
+  let busca = document.querySelector(".search").value.toLowerCase();
+  let ordem = document.getElementById("ordenar").value;
+
+  if(categoriaAtual !== "Todos"){
+    lista = lista.filter(p => p.categoria.toLowerCase() === categoriaAtual.toLowerCase());
+  }
+
+  if(busca){
+    lista = lista.filter(p => p.nome.toLowerCase().includes(busca));
+  }
+
+  if(ordem === "az"){
+    lista.sort((a,b) => a.nome.localeCompare(b.nome));
+  }else if(ordem === "maior"){
+    lista.sort((a,b) => b.preco - a.preco);
+  }else if(ordem === "menor"){
+    lista.sort((a,b) => a.preco - b.preco);
+  }else{
+    lista.sort((a,b) => (b.relevancia || 0) - (a.relevancia || 0));
+  }
+
+  renderProdutos(lista);
+}
+
+function finalizarPedido(){
+
+  let nome = document.getElementById("nomeCliente").value.trim();
+  let telefone = document.getElementById("telefoneCliente").value.trim();
+  let endereco = document.getElementById("enderecoCliente").value.trim();
+  let pagamento = document.getElementById("pagamento").value;
+
+  if(carrinho.length === 0){
+    alert("Carrinho vazio!");
+    return;
+  }
+
+  if(nome === "" || telefone === "" || endereco === ""){
+    alert("Preencha nome, telefone e endereço.");
+    return;
+  }
+
+  let numeroLoja = "5598984969464";
+  let total = 0;
+
+  let mensagem = `*PEDIDO - DINHO IMPORTS* \n\n`;
+  mensagem += `*Cliente:* ${nome}\n`;
+  mensagem += `*Telefone:* ${telefone}\n`;
+  mensagem += `*Endereço:* ${endereco}\n`;
+  mensagem += `*Pagamento:* ${pagamento}\n\n`;
+  mensagem += `*Itens do pedido:*\n`;
+
+  carrinho.forEach((item, index) => {
+    let subtotal = item.preco * item.qtd;
+    total += subtotal;
+
+    mensagem += `\n${index + 1}. ${item.nome}`;
+    mensagem += `\nTamanho: ${item.tamanho}`;
+    mensagem += `\nQuantidade: ${item.qtd}`;
+    mensagem += `\nPreço unitário: R$ ${item.preco}`;
+    mensagem += `\nSubtotal: R$ ${subtotal}\n`;
+  });
+
+  mensagem += `\n*Total do pedido: R$ ${total}*`;
+  mensagem += `\n\nPedido enviado pelo site.`;
+
+  let linkWhatsApp = `https://wa.me/${98984821573}?text=${encodeURIComponent(mensagem)}`;
+
+  window.open(linkWhatsApp, "_blank");
+}
+
+document.querySelector(".search").addEventListener("input", aplicarFiltros);
+
+carregarProdutos();
+aplicarFiltros();
+atualizarCarrinho();
+document.addEventListener("keydown", function(e){
+  if(e.ctrlKey && e.shiftKey && e.key.toLowerCase() === "a"){
+    let senha = prompt("Digite a senha do administrador:");
+
+    if(senha === "1234"){
+      document.getElementById("adminBox").style.display = "block";
+      document.getElementById("loginAdmin").style.display = "none";
+      document.getElementById("conteudoAdmin").style.display = "block";
+      adminLogado = true;
+      renderAdminProdutos();
+    }else{
+      alert("Senha incorreta");
+    }
+  }
+});
+</script>
+
+</body>
+</html>
