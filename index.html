@@ -938,7 +938,7 @@ function finalizarPedido(){
   mensagem += `\n*Total do pedido: R$ ${total}*`;
   mensagem += `\n\nPedido enviado pelo site.`;
 
-  let linkWhatsApp = `https://wa.me/${98984969464}?text=${encodeURIComponent(mensagem)}`;
+  let linkWhatsApp = `https://wa.me/${numeroLoja}?text=${encodeURIComponent(mensagem)}`;
 
   window.open(linkWhatsApp, "_blank");
 }
